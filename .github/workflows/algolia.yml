@@ -1,0 +1,26 @@
+# This workflow will fetch all datasets from Discover API and replace the objects in the DISCOVER index on Algolia
+
+name: Algolia
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "* */1 * * *"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+      - name: Install modules
+        run: yarn install
+      - name: Populate data
+        env:
+          DISCOVER_API: ${{secrets.DISCOVER_API}}
+          DISCOVER_API_LIMIT: ${{secrets.DISCOVER_API_LIMIT}}
+          ALGOLIA_APP_ID: ${{secrets.ALGOLIA_APP_ID}}
+          ALGOLIA_ADMIN_KEY: ${{secrets.ALGOLIA_ADMIN_KEY}}
+          ALGOLIA_INDEX: ${{secrets.ALGOLIA_INDEX}}
+
+        run: yarn start

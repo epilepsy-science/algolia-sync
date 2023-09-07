@@ -1,0 +1,21 @@
+{
+  "name": "algolia-discover-api",
+  "version": "0.0.1",
+  "description": "Populate Agolia index with Discover data",
+  "main": "index.js",
+  "author": "Blackfynn",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "algoliasearch": "^4.8.5",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "prettier": "2.2.1"
+  }
+}
