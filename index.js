@@ -1,4 +1,5 @@
 const dotenv = require("dotenv");
+const searchTerm ="epilepsy"
 dotenv.config();
 
 const fetch = require("node-fetch");
@@ -22,7 +23,7 @@ const getDatasets = async (offset = 0) => {
 
   try {
     const response = await fetch(
-      `${discoverApi}/datasets?limit=${limit}&offset=${offset}`
+      `${discoverApi}search/datasets?limit=${limit}&offset=${offset}&query=${searchTerm}`
     );
     const { datasets, totalCount } = await response.json();
 
