@@ -23,7 +23,7 @@ const getDatasets = async (offset = 0) => {
 
   try {
     const response = await fetch(
-      `${discoverApi}search/datasets?limit=${limit}&offset=${offset}&query=${searchTerm}`
+      `${discoverApi}/search/datasets?limit=${limit}&offset=${offset}&query=${searchTerm}`
     );
     const { datasets, totalCount } = await response.json();
 
