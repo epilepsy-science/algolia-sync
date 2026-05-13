@@ -1,0 +1,28 @@
+# This workflow will fetch all datasets from the dev Discover API and replace the objects in the dev index on Algolia
+
+name: Algolia Dev
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+      - name: Install modules
+        run: yarn install
+      - name: Populate data
+        env:
+          DISCOVER_API: ${{secrets.DEV_DISCOVER_API}}
+          DISCOVER_API_LIMIT: ${{secrets.DISCOVER_API_LIMIT}}
+          ALGOLIA_APP_ID: ${{secrets.ALGOLIA_APP_ID}}
+          ALGOLIA_ADMIN_KEY: ${{secrets.ALGOLIA_ADMIN_KEY}}
+          ALGOLIA_INDEX: ${{secrets.DEV_ALGOLIA_INDEX}}
+          SEARCH_TERM: MEF
+          FILTER_TAGS: timeseries
+
+        run: yarn start
